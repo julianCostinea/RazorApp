@@ -1,0 +1,27 @@
+﻿@page
+@model RazorApp.Pages.Categories.Index
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Categories</title>
+</head>
+<body>
+<h1 class="text-primary">Category List</h1>
+<a asp-page="create" class="btn btn-primary">Create new category</a>
+<div>
+    @foreach (var category in Model.Categories)
+    {
+        <div>
+            <h4>@category.Name</h4>
+            <p>@category.DisplayOrder</p>
+        </div>
+    }
+</div>
+</body>
+</html>
