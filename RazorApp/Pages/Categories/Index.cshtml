@@ -1,10 +1,6 @@
 ﻿@page
 @model RazorApp.Pages.Categories.Index
 
-@{
-    Layout = null;
-}
-
 <!DOCTYPE html>
 
 <html>
@@ -20,6 +16,11 @@
         <div>
             <h4>@category.Name</h4>
             <p>@category.DisplayOrder</p>
+            <a asp-page="edit" asp-route-id="@category.Id">Edit</a>
+            @* make a delete button *@
+            <form method="post" asp-page-handler="delete" asp-route-id="@category.Id">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
         </div>
     }
 </div>

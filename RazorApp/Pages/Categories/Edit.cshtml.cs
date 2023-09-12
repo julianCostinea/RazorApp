@@ -7,11 +7,11 @@ namespace RazorApp.Pages.Categories;
 
 // multiple properties
 [BindProperties]
-public class Create : PageModel
+public class Edit : PageModel
 {
     private readonly ApplicationDbContext _db;
 
-    public Create(ApplicationDbContext db)
+    public Edit(ApplicationDbContext db)
     {
         _db = db;
     }
@@ -19,8 +19,9 @@ public class Create : PageModel
     // [BindProperty]
     public Category Category { get; set; }
 
-    public void OnGet()
+    public void OnGet(int id)
     {
+        Category = _db.Category.FirstOrDefault(c => c.Id == id);
     }
 
     public async Task<IActionResult> OnPost()
@@ -33,7 +34,7 @@ public class Create : PageModel
 
         if (ModelState.IsValid)
         {
-            _db.Category.Add(Category);
+            _db.Category.Update(Category);
 
             await _db.SaveChangesAsync();
 

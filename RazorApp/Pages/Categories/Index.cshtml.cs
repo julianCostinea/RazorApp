@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorApp.Data;
 using RazorApp.Model;
 
@@ -16,5 +17,19 @@ public class Index : PageModel
     public void OnGet()
     {
         Categories = _db.Category.ToList();
+    }
+    
+    public async Task<IActionResult> OnPostDelete(int id)
+    {
+        var category = await _db.Category.FindAsync(id);
+        if (category == null)
+        {
+            return NotFound();
+        }
+
+        _db.Category.Remove(category);
+        await _db.SaveChangesAsync();
+
+        return RedirectToPage("Index");
     }
 }
