@@ -1,13 +1,8 @@
 ﻿@page
 @model RazorApp.Pages.Categories.Index
 
-<!DOCTYPE html>
+<partial name="_Notification" />
 
-<html>
-<head>
-    <title>Categories</title>
-</head>
-<body>
 <h1 class="text-primary">Category List</h1>
 <a asp-page="create" class="btn btn-primary">Create new category</a>
 <div>
@@ -17,12 +12,9 @@
             <h4>@category.Name</h4>
             <p>@category.DisplayOrder</p>
             <a asp-page="edit" asp-route-id="@category.Id">Edit</a>
-            @* make a delete button *@
             <form method="post" asp-page-handler="delete" asp-route-id="@category.Id">
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
         </div>
     }
 </div>
-</body>
-</html>

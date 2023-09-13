@@ -36,6 +36,7 @@ public class Create : PageModel
             _db.Category.Add(Category);
 
             await _db.SaveChangesAsync();
+            TempData["success"] = "Category has been created successfully.";
 
             return RedirectToPage("Index");
         }

@@ -29,6 +29,8 @@ public class Index : PageModel
 
         _db.Category.Remove(category);
         await _db.SaveChangesAsync();
+        
+        TempData["success"] = "Category has been deleted successfully.";
 
         return RedirectToPage("Index");
     }
